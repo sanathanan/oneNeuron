@@ -9,12 +9,25 @@ plt.style.use("fivethirtyeight")
 
 
 def prepare_data(df):
+    """ It is used to separate the dependent and independent features        
 
+    Args:
+        df (pd.DataFrame): ist the pandas dataframe to
+
+    Returns:
+        tuple : it returns the tuple of dependent variables and independent variables
+    """
     x = df.drop("y", axis=1)
     y = df["y"]
     return x, y
 
 def save_model(model, filename):
+    """This saves the trained model to
+
+    Args:
+        model (python object): trained model to
+        filename (str): path to save the trained model
+    """ 
     model_dir = "models"
     os.makedirs(model_dir, exist_ok=True)  # ONLY CREATE IF MODEL_DIR DOES NOT EXISTS
     filepath = os.path.join(model_dir, filename)  # model/filename
@@ -23,6 +36,12 @@ def save_model(model, filename):
 
 
 def save_plot(df, file_name, model):
+
+    """
+    :param df: its a dataframe
+    :param file_name: its path to save the plot
+    :param model:trained model
+    """
     def _create_base_plot(df):
         print("creating the base plot")
         df.plot(kind="scatter", x="x1", y="x2", c="y", s=100, cmap="winter")
